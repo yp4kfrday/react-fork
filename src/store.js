@@ -2,6 +2,9 @@
  * Хранилище состояния приложения
  */
 class Store {
+  #codeCounter = 8;
+  #clickCounter = {};
+
   constructor(initState = {}) {
     this.state = initState;
     this.listeners = []; // Слушатели изменений состояния
@@ -42,11 +45,22 @@ class Store {
    * Добавление новой записи
    */
   addItem() {
+    const newCode = this.#generateUniqueCode();
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.state.list.length + 1, title: 'Новая запись'}]
-    })
-  };
+      list: [...this.state.list, { code: newCode, title: 'Новая запись' }]
+    });
+  }
+
+  /**
+ * Генерация уникального кода
+ * @returns {number} Уникальный код
+ */
+  #generateUniqueCode() {
+    const newCode = this.#codeCounter;
+    this.#codeCounter += 1;
+    return newCode;
+  }
 
   /**
    * Удаление записи по коду
@@ -69,11 +83,23 @@ class Store {
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
+
+          // Инициализация счетчика кликов после первого клика
+          if (item.selected && !item.clickCount) {
+            item.clickCount = 1;
+          } else if (item.selected) {
+            // Увеличение счетчика кликов после последующих кликов
+            item.clickCount += 1;
+          }
+        } else {
+          item.selected = false;
         }
+
         return item;
       })
-    })
+    });
   }
 }
+
 
 export default Store;
