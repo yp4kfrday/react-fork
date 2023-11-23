@@ -1,7 +1,7 @@
 name: Vercel Preview Deployment
 env:
-  VERCEL_ORG_ID: prj_DjaAeRmIZ6Nsl8pNbWl8YftMgHbO
-  VERCEL_PROJECT_ID: team_nuZTpjMFtjg6nYvRq8D59qS1
+  VERCEL_ORG_ID: team_nuZTpjMFtjg6nYvRq8D59qS1
+  VERCEL_PROJECT_ID: prj_DjaAeRmIZ6Nsl8pNbWl8YftMgHbO
 on:
   pull_request:
     branches:
