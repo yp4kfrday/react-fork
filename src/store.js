@@ -2,11 +2,13 @@
  * Хранилище состояния приложения
  */
 class Store {
-  #codeCounter = 8;
-  #clickCounter = {};
+  #codeCounter = '';
 
   constructor(initState = {}) {
-    this.state = initState;
+    const lastItem = initState.list && initState.list.length > 0 ? initState.list[initState.list.length - 1] : null;
+    this.#codeCounter = lastItem ? lastItem.code + 1 : 1;
+
+    this.state = { list: initState.list || [], selectedCode: null };
     this.listeners = []; // Слушатели изменений состояния
   }
 
@@ -48,18 +50,9 @@ class Store {
     const newCode = this.#generateUniqueCode();
     this.setState({
       ...this.state,
-      list: [...this.state.list, { code: newCode, title: 'Новая запись' }]
+      list: [...this.state.list, { code: newCode, title: 'Новая запись' }],
+      selectedCode: newCode, // Выделяем новую запись
     });
-  }
-
-  /**
- * Генерация уникального кода
- * @returns {number} Уникальный код
- */
-  #generateUniqueCode() {
-    const newCode = this.#codeCounter;
-    this.#codeCounter += 1;
-    return newCode;
   }
 
   /**
@@ -69,9 +62,9 @@ class Store {
   deleteItem(code) {
     this.setState({
       ...this.state,
-      list: this.state.list.filter(item => item.code !== code)
-    })
-  };
+      list: this.state.list.filter((item) => item.code !== code),
+    });
+  }
 
   /**
    * Выделение записи по коду
@@ -80,6 +73,7 @@ class Store {
   selectItem(code) {
     this.setState({
       ...this.state,
+      selectedCode: code,
       list: this.state.list.map(item => {
         if (item.code === code) {
           item.selected = !item.selected;
@@ -99,7 +93,16 @@ class Store {
       })
     });
   }
-}
 
+  /**
+   * Генерация уникального кода
+   * @returns {number} Уникальный код
+   */
+  #generateUniqueCode() {
+    const newCode = this.#codeCounter;
+    this.#codeCounter += 1;
+    return newCode;
+  }
+}
 
 export default Store;

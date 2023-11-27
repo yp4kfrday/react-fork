@@ -1,7 +1,7 @@
 import React from 'react';
 import { createElement } from './utils.js';
 import './styles.css';
-
+import getPluralForm from './utils/pluralize.js';
 /**
  * Приложение
  * @param store {Store} Хранилище состояния приложения
@@ -10,6 +10,11 @@ import './styles.css';
 function App({ store }) {
 
   const list = store.getState().list;
+
+  const handleDeleteItem = async (code) => {
+    await store.deleteItem(code);
+  };
+
 
   return (
     <div className='App'>
@@ -26,12 +31,15 @@ function App({ store }) {
               <div className={'Item' + (item.selected ? ' Item_selected' : '')}
                 onClick={() => store.selectItem(item.code)}>
                 <div className='Item-code'>{item.code}</div>
-                <div className='Item-title'>{item.title}</div>
-                {item.clickCount && (
-                  <div className='Item-click-count'>| Выделено {item.clickCount} раз</div>
-                )}
+                <div className='Item-title'>
+                  {item.title} {item.clickCount && (
+                    <span className='Item-click-count'>
+                      | Выделено {getPluralForm('раз', 'раза', item.clickCount)}
+                    </span>
+                  )}
+                </div>
                 <div className='Item-actions'>
-                  <button onClick={() => store.deleteItem(item.code)}>
+                  <button onClick={() => handleDeleteItem(item.code)}>
                     Удалить
                   </button>
                 </div>
