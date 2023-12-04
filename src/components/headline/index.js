@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './style.css';
+import { plural } from "../../utils";
 
 function Headline({ totalQuantity, totalPrice, setActiveModal }) {
     return (
@@ -8,7 +9,13 @@ function Headline({ totalQuantity, totalPrice, setActiveModal }) {
             <div className="headline-title">
                 В корзине: {' '}
                 <span style={{ fontWeight: 'bold', color: 'yourColorCode' }}>
-                    {totalQuantity} / {totalPrice} ₽
+                    {totalQuantity
+                        ? `${totalQuantity} ${plural(totalQuantity, {
+                            one: 'товар',
+                            few: 'товара',
+                            many: 'товаров',
+                        })} / ${totalPrice.toLocaleString('ru-RU')} ₽`
+                        : 'пусто'}
                 </span>
             </div>
             <button onClick={() => setActiveModal(true)}>Перейти</button>

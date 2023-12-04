@@ -4,6 +4,7 @@ import './style.css';
 import BasketItem from "./basketItems";
 
 function Basket({ basket, onDeleteItemFromBasket }) {
+
     return (
         <div className='Basket'>{
             basket.map(item =>

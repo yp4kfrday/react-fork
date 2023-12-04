@@ -64,7 +64,7 @@ Modal.propTypes = {
     quantity: PropTypes.number
   })).isRequired,
   onDeleteItemFromBasket: PropTypes.func,
-  totalPrice: PropTypes.number,
+  totalPrice: PropTypes.string,
   activeModal: PropTypes.bool,
   setActiveModal: PropTypes.func
 };

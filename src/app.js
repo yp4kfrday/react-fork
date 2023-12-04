@@ -15,6 +15,13 @@ function App({ store }) {
   const [activeModal, setActiveModal] = useState(false)
 
   const list = store.getState().list;
+  const basket = store.getState().basket
+  const totalQuantity = (basket || []).reduce((total, item) => total + item.quantity, 0).toLocaleString();
+
+  const totalPrice = basket.map(item => {
+    return item.price * item.quantity
+  }).reduce((total, item) => total + item, 0).toLocaleString()
+
 
   const callbacks = {
 
@@ -26,15 +33,6 @@ function App({ store }) {
       store.deleteItemFromBasket(code);
     }, [store])
   }
-
-  const basket = store.getState().basket
-  const totalQuantity = (basket || []).reduce((total, item) => total + item.quantity, 0).toLocaleString();
-
-  const totalPrice = basket.map(item => {
-    return item.price * item.quantity
-  }).reduce((total, item) => total + item, 0).toLocaleString()
-
-
 
   return (
     <PageLayout>

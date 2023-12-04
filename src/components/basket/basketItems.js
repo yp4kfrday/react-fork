@@ -17,8 +17,8 @@ function BasketItem({ item, onDeleteItemFromBasket }) {
                 {item.title}
             </div>
             <div className='BasketItem-details'>
-                <p className="BasketItem-price">{item.price.toLocaleString()} ₽</p>
-                <p className="BasketItem-quantity">{item.quantity.toLocaleString()} шт</p>
+                <p className="BasketItem-price">{item.price.toLocaleString('ru-RU')} ₽</p>
+                <p className="BasketItem-quantity">{item.quantity.toLocaleString('ru-RU')} шт</p>
                 <div className='BasketItem-actions'>
                     <button onClick={callbacks.onDeleteItemFromBasket}>Удалить</button>
                 </div>
