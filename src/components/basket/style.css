@@ -1,4 +1,4 @@
-.BasketItem {
+.Basket-item {
     display: flex;
     justify-content: space-between;
     transition: background-color 1s;
@@ -6,24 +6,34 @@
     width: 960px;
 }
 
-.BasketItem-code {
+.Basket-item__code {
     padding: 20px 10px 20px 20px;
 }
 
-.BasketItem-title {
+.Basket-item__title {
     padding: 20px 10px;
     flex: 1;
 }
 
-.BasketItem-details {
+.Basket-item__details {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 20px;
+    gap: 61px;
     font-size: 18px;
 }
 
-.BasketItem-actions {
+
+.Basket-item:first-child {
+    border-top: 1px dashed #ccc;
+}
+
+.Basket-item:last-child {
+    border-bottom: 1px dashed #ccc;
+}
+
+
+.Basket-item__actions {
     display: flex;
     justify-content: flex-end;
     padding: 20px 20px 20px 10px;

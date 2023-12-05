@@ -16,12 +16,8 @@ function App({ store }) {
 
   const list = store.getState().list;
   const basket = store.getState().basket
-  const totalQuantity = (basket || []).reduce((total, item) => total + item.quantity, 0).toLocaleString();
-
-  const totalPrice = basket.map(item => {
-    return item.price * item.quantity
-  }).reduce((total, item) => total + item, 0).toLocaleString()
-
+  const totalQuantity = store.getUniqueItemCount();
+  const totalPrice = store.getTotalPrice();
 
   const callbacks = {
 

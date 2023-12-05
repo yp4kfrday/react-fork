@@ -7,15 +7,15 @@ function Headline({ totalQuantity, totalPrice, setActiveModal }) {
     return (
         <div className='Headline'>
             <div className="headline-title">
-                В корзине: {' '}
-                <span style={{ fontWeight: 'bold', color: 'yourColorCode' }}>
+                В корзине:
+                <span style={{ fontWeight: 'bold' }}>
                     {totalQuantity
-                        ? `${totalQuantity} ${plural(totalQuantity, {
+                        ? `${totalQuantity.toLocaleString()} ${plural(totalQuantity, {
                             one: 'товар',
                             few: 'товара',
                             many: 'товаров',
                         })} / ${totalPrice.toLocaleString('ru-RU')} ₽`
-                        : 'пусто'}
+                        : ' пусто'}
                 </span>
             </div>
             <button onClick={() => setActiveModal(true)}>Перейти</button>

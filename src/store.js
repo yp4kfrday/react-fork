@@ -56,8 +56,6 @@ class Store {
       const newItem = { ...arr[index], quantity: arr[index].quantity + 1 };
       arr[index] = newItem;
 
-      console.log('Block else is executed!');
-
       this.setState({
         ...this.state,
         basket: arr,
@@ -72,6 +70,34 @@ class Store {
       ...this.state,
       basket: this.state.basket.filter(item => item.code !== code)
     })
+  }
+
+  // Селектор для получения корзины
+  getBasket() {
+    return this.state.basket || [];
+  }
+
+  // Селектор для подсчета уникальных товаров
+  getUniqueItemCount() {
+    const basket = this.getBasket();
+    const uniqueItemCodes = new Set();
+
+    return basket.reduce((total, item) => {
+      if (!uniqueItemCodes.has(item.code)) {
+        uniqueItemCodes.add(item.code);
+        return total + 1; // Увеличиваем счетчик только для уникальных товаров
+      }
+      return total;
+    }, 0);
+  }
+
+  // Селектор для подсчета общей стоимости
+  getTotalPrice() {
+    const basket = this.getBasket();
+
+    return basket
+      .map(item => item.price * item.quantity)
+      .reduce((total, item) => total + item, 0);
   }
 }
 

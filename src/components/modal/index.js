@@ -1,10 +1,13 @@
 import React, { useEffect } from "react";
 import PropTypes from 'prop-types';
 import './style.css';
-import BasketItem from "../basket/basketItems";
+import BasketList from "../basket/index";
 
 function Modal({ basket, onDeleteItemFromBasket, totalPrice, activeModal, setActiveModal }) {
-  const isEmptyBasket = basket.length === 0;
+
+  const isEmptyBasket = !basket.length;
+  const modalClasses = activeModal ? 'Modal active' : 'Modal';
+  const containerClasses = `Modal-container ${isEmptyBasket ? 'EmptyBasket' : ''}`;
 
   const handleClickOutside = (event) => {
     // Проверяем, что клик был вне модального окна
@@ -26,8 +29,8 @@ function Modal({ basket, onDeleteItemFromBasket, totalPrice, activeModal, setAct
   }, [activeModal, setActiveModal]);
 
   return (
-    <div className={activeModal ? 'Modal active' : 'Modal'}>
-      <div className={`Modal-container ${isEmptyBasket ? 'EmptyBasket' : ''}`}>
+    <div className={modalClasses}>
+      <div className={containerClasses}>
         {!isEmptyBasket && (
           <div className="Modal-header">
             <p>Корзина</p>
@@ -39,16 +42,14 @@ function Modal({ basket, onDeleteItemFromBasket, totalPrice, activeModal, setAct
         {isEmptyBasket ? (
           <p>Ваша корзина пуста</p>
         ) : (
-          basket.map(item =>
-            <div key={item.code} className='List-item'>
-              <BasketItem item={item} onDeleteItemFromBasket={onDeleteItemFromBasket} />
-            </div>
-          )
+          <div className='Basket-list'>
+            <BasketList basket={basket} onDeleteItemFromBasket={onDeleteItemFromBasket} />
+          </div>
         )}
-        {!isEmptyBasket && (
+        {!isEmptyBasket && totalPrice && (
           <div className="Modal-footer">
             <div>Итого</div>
-            <div>{totalPrice} ₽</div>
+            <div>{totalPrice.toLocaleString('ru-RU')} ₽</div>
           </div>
         )}
       </div>
@@ -64,7 +65,7 @@ Modal.propTypes = {
     quantity: PropTypes.number
   })).isRequired,
   onDeleteItemFromBasket: PropTypes.func,
-  totalPrice: PropTypes.string,
+  totalPrice: PropTypes.number,
   activeModal: PropTypes.bool,
   setActiveModal: PropTypes.func
 };

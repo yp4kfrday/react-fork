@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './style.css';
-import BasketItem from "./basketItems";
+import BasketItem from "./basketItem";
 
 function Basket({ basket, onDeleteItemFromBasket }) {
 

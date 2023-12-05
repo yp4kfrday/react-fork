@@ -11,17 +11,17 @@ function BasketItem({ item, onDeleteItemFromBasket }) {
     }
 
     return (
-        <div className={'BasketItem'}>
-            <div className='BasketItem-code'>{item.code}</div>
-            <div className='BasketItem-title'>
+        <div className={'Basket-item'}>
+            <div className='Basket-item__code'>{item.code}</div>
+            <div className='Basket-item__title'>
                 {item.title}
             </div>
-            <div className='BasketItem-details'>
-                <p className="BasketItem-price">{item.price.toLocaleString('ru-RU')} ₽</p>
-                <p className="BasketItem-quantity">{item.quantity.toLocaleString('ru-RU')} шт</p>
-                <div className='BasketItem-actions'>
-                    <button onClick={callbacks.onDeleteItemFromBasket}>Удалить</button>
-                </div>
+            <div className='Basket-item__details'>
+                <p className="Basket-item__price">{item.price.toLocaleString('ru-RU')} ₽</p>
+                <p className="Basket-item__quantity">{item.quantity.toLocaleString('ru-RU')} шт</p>
+            </div>
+            <div className='Basket-item__actions'>
+                <button onClick={callbacks.onDeleteItemFromBasket}>Удалить</button>
             </div>
         </div>
     );
