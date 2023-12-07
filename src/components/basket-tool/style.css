@@ -6,11 +6,34 @@
   font-size: 18px;
 }
 
-.BasketTool-label {
-
-}
+.BasketTool-label {}
 
 .BasketTool-total {
   font-weight: bold;
   margin: 0 20px;
+}
+
+.basket-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.basket-container_link {
+  padding-left: 20px;
+  align-self: center;
+  color: #0087E9;
+}
+
+.basket-container_button {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  background-color: #EFEFEF;
+  border: 1px solid #767676;
+  display: flex;
+  min-width: 69px;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: #000;
+  white-space: nowrap;
 }

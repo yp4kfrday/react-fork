@@ -1,0 +1,28 @@
+.list {
+    display: flex;
+    justify-content: flex-end;
+    padding: 22px 21px 229px 0;
+    max-width: 100%;
+}
+
+.list__item {
+    background: transparent;
+    color: #000;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    height: 20px;
+}
+
+.list__item:hover {
+    background: #E1E1E1;
+}
+
+.list__item_active {
+    background: #0087E9;
+    color: #fff;
+}
+
+.dots {
+    color: #CCCCCC;
+}

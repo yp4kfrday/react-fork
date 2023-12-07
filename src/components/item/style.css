@@ -2,7 +2,7 @@
   display: flex;
   justify-content: flex-start;
   transition: background-color 1s;
-  padding-left: 10px
+  padding-left: 10px;
 }
 
 .Item_selected {
@@ -17,6 +17,14 @@
 .Item-title {
   width: 100%;
   padding: 20px 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.Item-title:hover {
+  text-decoration: underline;
+  text-decoration-color: #CCC;
+  text-decoration-thickness: 1px;
 }
 
 .Item-actions {
@@ -24,11 +32,40 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 20px
+  gap: 20px;
 }
 
 .Item-price {
   padding: 0 0 0 10px;
   white-space: nowrap;
   font-size: 18px;
+}
+
+.Item-info {
+  gap: 20px;
+  padding-right: 41px;
+  padding-left: 30px;
+  padding-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.Item-info__title {
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.Item-info__title_bold {
+  font-weight: 600;
+}
+
+.Item-info__title_size {
+  font-size: 24px;
+}
+
+.Item-info__button {
+  width: 76px;
+  height: 21px;
 }
